@@ -6,9 +6,10 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthService } from "./auth.service";
-import { MatInputModule } from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { WINDOW_PROVIDERS } from "./window.service";
 
 const routes: Routes = [
   {
@@ -23,14 +24,19 @@ const routes: Routes = [
     LogInComponent
   ],
   imports: [
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    MatInputModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    WINDOW_PROVIDERS
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

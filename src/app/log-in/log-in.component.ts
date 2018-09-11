@@ -33,7 +33,7 @@ export class LogInComponent implements OnInit {
     return this.loginForm.get('password');
   }
   submit () {
-
+    this.auth.loginUser(this.loginForm.value);
   }
 
 }

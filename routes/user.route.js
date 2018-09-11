@@ -14,8 +14,11 @@ userRoutes.route('/login').post((req, res, next) => {
     if (err) return next(err);
     if (usr) {
       usr = usr.toObject();
+      console.log("pw sent: " + user.password);
+      console.log("pw db: " + usr.passwordHash);
       bcrypt.compare(user.password, usr.passwordHash, (err, pwMatch) => {
         if (err) return next(err);
+        console.log("pw match: " + pwMatch);
         res.send(pwMatch);
       });
     }

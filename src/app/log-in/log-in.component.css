@@ -1,0 +1,29 @@
+.subtitle {
+  color: darkgray;
+}
+button {
+  width: 120px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+.button-cols {
+  margin-top:20px;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+.container {
+  padding: 40px;
+  max-width: 100%;
+  min-height: 100vh;
+}
+.row.align-items-center {
+  height: 85vh;
+}
+.card-box-main {
+  min-height: 100%;
+}

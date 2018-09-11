@@ -1,32 +1,47 @@
-<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 card-box-main">
-  <div class="row">
-    <div class="col-sm-12 reg-box-header card-box-header text-center">
-      <span>Restaurant Log In</span>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-sm-8 col-lg-6 card-box-main">
+      <img src="../../assets/img/login_back.jpg" alt="login-pic">
     </div>
-    <div class="col-sm-12 card-box-main-content">
-      <form [formGroup]="loginForm">
-        <div class="row">
-          <div class="col-sm-12 col-md-8 offset-md-2">
-            <mat-form-field>
-              <input matInput placeholder="Username" formControlName="username" required>
-              <mat-error *ngIf="username.hasError('required')">
-                Username is required.
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col-sm-12 col-md-8 offset-md-2">
-            <mat-form-field>
-              <input type="password" matInput placeholder="Password" formControlName="password" required>
-              <mat-error *ngIf="password.hasError('required')">
-                Password is required.
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col-sm-4 offset-sm-4 text-center">
-            <button type="submit" class="submitBtn" (click)="submit()"><span>Choose a Room </span> <span class="button-icon"><i class="fas fa-angle-double-right" ></i></span></button>
-          </div>
+    <div class="col-sm-8 col-lg-6 card-box-main">
+      <div class="row">
+        <div class="col-sm-12 reg-box-header card-box-header text-center">
+          <h2>Restaurant Log-In</h2>
+          <span class="subtitle">Welcome back! Please login to your account.</span>
         </div>
-      </form>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-sm-12 card-box-main-content">
+          <form [formGroup]="loginForm">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 offset-md-3">
+                <mat-form-field>
+                  <input matInput placeholder="Username" formControlName="username" required>
+                  <mat-error *ngIf="username.hasError('required')">
+                    Username is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-12 col-md-6 offset-md-3">
+                <mat-form-field>
+                  <input type="password" matInput placeholder="Password" formControlName="password" required>
+                  <mat-error *ngIf="password.hasError('required')">
+                    Password is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-4 offset-sm-2 text-center button-cols">
+                <button mat-raised-button type="submit" class="submitBtn" (click)="submit()" color="primary" [disabled]="!loginForm.valid">Log In</button>
+              </div>
+              <div class="col-sm-4 text-center button-cols">
+                <button mat-raised-button type="submit" class="submitBtn">Sign Up</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
