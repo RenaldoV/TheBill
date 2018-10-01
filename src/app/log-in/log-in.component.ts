@@ -12,6 +12,7 @@ import {ValidateFn} from "codelyzer/walkerFactory/walkerFn";
 export class LogInComponent implements OnInit {
   loginForm: FormGroup;
   ngOnInit() {
+   // this.auth.addUser({email: 'test@thebil.co.za', password: 'rootTest1'});
   }
 
   constructor(
@@ -22,18 +23,18 @@ export class LogInComponent implements OnInit {
   }
   createForm() {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
-  get username () {
-    return this.loginForm.get('username');
+  get email () {
+    return this.loginForm.get('email');
   }
   get password () {
     return this.loginForm.get('password');
   }
   submit () {
-    this.auth.loginUser(this.loginForm.value);
+    this.auth.loginUser(this.loginForm.value)
   }
 
 }

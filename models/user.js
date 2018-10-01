@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let User = new Schema({
-  username: {
+  email: {
     type: String
   },
   passwordHash: {
@@ -14,3 +14,4 @@ let User = new Schema({
   });
 
 module.exports = mongoose.model('User', User);
+

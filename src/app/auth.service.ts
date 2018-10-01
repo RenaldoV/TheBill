@@ -17,6 +17,7 @@ export class AuthService {
   }
 
   addUser (user) {
+    console.log(user);
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
     this.http.post<any>(`${this.host}/addUser`, user)
@@ -38,8 +39,9 @@ export class AuthService {
       .subscribe(res => {
         if(res){
           this.saveUser(user);
-          alert(this.isAuthenticated());
+          this.router.navigate(['/restaurant-dashboard']);
         }else {
+          alert('Email and password combination is incorrect.');
           return false;
         }
       }, err => {

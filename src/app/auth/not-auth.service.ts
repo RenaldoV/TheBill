@@ -13,7 +13,7 @@ export class NotAuthService implements CanActivate {
   ) { }
   canActivate(): boolean {
     if (this.auth.isAuthenticated()) {
-      this.router.navigate(['/select-room']);
+      this.router.navigate(['/restaurant-dashboard']);
       return false;
     } else {
       return true;

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { RouterModule, Routes } from "@angular/router";
@@ -10,18 +9,27 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/mate
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { WINDOW_PROVIDERS } from "./window.service";
+import { RestDashboardComponent } from './rest-dashboard/rest-dashboard.component';
+import { NotAuthService } from "./auth/not-auth.service";
+import { AuthGuardService } from "./auth/auth-guard.service";
 
 const routes: Routes = [
   {
     path: 'logIn',
-    component: LogInComponent
+    component: LogInComponent,
+    canActivate: [NotAuthService]
+  }, {
+    path: 'restaurant-dashboard',
+    component: RestDashboardComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogInComponent
+    LogInComponent,
+    RestDashboardComponent
   ],
   imports: [
     MatInputModule,
@@ -34,7 +42,6 @@ const routes: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-    AuthService,
     WINDOW_PROVIDERS
   ],
   bootstrap: [AppComponent]

@@ -9,16 +9,17 @@ let User = require('../models/User');
 // Defined store route
 userRoutes.route('/login').post((req, res, next) => {
   let user = req.body;
-  // console.log(user);
+  console.log(user);
   User.findOne({email : user.email}, (err, usr) => {
     if (err) return next(err);
+    console.log(usr);
     if (usr) {
       usr = usr.toObject();
-      console.log("pw sent: " + user.password);
-      console.log("pw db: " + usr.passwordHash);
+      // console.log("pw sent: " + user.password);
+      // console.log("pw db: " + usr.passwordHash);
       bcrypt.compare(user.password, usr.passwordHash, (err, pwMatch) => {
         if (err) return next(err);
-        console.log("pw match: " + pwMatch);
+        // console.log("pw match: " + pwMatch);
         res.send(pwMatch);
       });
     }
@@ -33,7 +34,7 @@ userRoutes.route('/addUser').post((req, res, next) => {
     // Store hash in your password DB.
     if (err) return next(err);
     newUser.passwordHash = hash;
-    newUser.username = user.username;
+    newUser.email = user.email;
     User.create(newUser, (err, result) => {
       if (err) return next(err);
       if (result) {

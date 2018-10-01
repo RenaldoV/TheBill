@@ -1,3 +1,4 @@
 module.exports = {
-  DB: 'mongodb://localhost:27017/theBill'
+  DB: 'mongodb://website_test_user:rootTest123@ds119503.mlab.com:19503/thebil'
 };
+
