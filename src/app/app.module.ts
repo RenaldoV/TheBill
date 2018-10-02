@@ -5,13 +5,14 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthService } from "./auth.service";
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSidenavModule} from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { WINDOW_PROVIDERS } from "./window.service";
 import { RestDashboardComponent } from './rest-dashboard/rest-dashboard.component';
 import { NotAuthService } from "./auth/not-auth.service";
 import { AuthGuardService } from "./auth/auth-guard.service";
+import { AdminNavComponent } from './admin-nav/admin-nav.component';
 
 const routes: Routes = [
   {
@@ -29,12 +30,15 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LogInComponent,
-    RestDashboardComponent
+    RestDashboardComponent,
+    AdminNavComponent
   ],
   imports: [
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,

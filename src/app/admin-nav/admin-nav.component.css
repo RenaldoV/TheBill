@@ -1,0 +1,29 @@
+h3 {
+  margin-top: 15px;
+  color: white;
+}
+.header {
+  height: 60px;
+  background-color: rgb(46,46,46);
+}
+.nav-link {
+  vertical-align: middle;
+  display: inline-flex;
+}
+.nav-link span {
+  color: rgb(247,248,247);
+  padding-left: 10px;
+}
+.nav-item {
+  padding: 10px;
+}
+.nav-item:hover {
+  cursor: pointer;
+  background-color: rgb(60,60,60);
+}
+.nav-item.active {
+  background-color: rgb(70,70,70);
+}
+mat-icon {
+  color: rgb(137,129,230);
+}

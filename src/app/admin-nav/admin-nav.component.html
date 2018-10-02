@@ -1,0 +1,18 @@
+<div class="nav-container">
+  <div class="header align-content-center">
+    <h3 class="font-italic text-center">The Bill</h3>
+  </div>
+  <ul class="nav flex-column">
+    <li class="nav-item" [class]="isActivated('/restaurant-dashboard')">
+      <a class="nav-link">
+        <mat-icon>home</mat-icon><span>Home</span>
+      </a>
+    </li>
+    <li class="nav-item" (click)="logOut()">
+      <a class="nav-link">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Log Out</span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -37,10 +37,10 @@ export class AuthService {
     headers.set('Content-Type', 'application/json');
     this.http.post<any>(`${this.host}/login`, user)
       .subscribe(res => {
-        if(res){
+        if (res) {
           this.saveUser(user);
           this.router.navigate(['/restaurant-dashboard']);
-        }else {
+        } else {
           alert('Email and password combination is incorrect.');
           return false;
         }
