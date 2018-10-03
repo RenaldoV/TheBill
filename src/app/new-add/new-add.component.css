@@ -1,0 +1,62 @@
+.specials-container {
+  padding: 80px 0px 80px 0px;
+  max-width: 92%;
+}
+.special-box {
+  background-color: white;
+  padding-top: 40px;
+  transition: box-shadow 0.3s;
+  padding: 10px;
+}
+.special-box:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.subscript {
+  vertical-align: super;
+  font-size: 16px;
+}
+
+h2 {
+  margin-bottom: 0px;
+}
+small {
+  color: grey;
+  margin-bottom: 30px;
+}
+
+h5 {
+  margin-top: 50px;
+}
+
+.features {
+  list-style-type: none;
+  color: grey;
+  padding: 0px;
+}
+.btn {
+  background-color: rgb(33,132,249);
+  border-radius: 4px;
+  color: white;
+
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid black;
+  position: absolute;
+  top: -30px;
+  left: 38.5%;
+  background-color: white;
+}
+
+.icon mat-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  margin-top: 8px;
+  margin-left: 1px;
+}
+

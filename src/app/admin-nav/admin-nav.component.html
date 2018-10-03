@@ -4,8 +4,14 @@
   </div>
   <ul class="nav flex-column">
     <li class="nav-item" [class]="isActivated('/restaurant-dashboard')">
-      <a class="nav-link">
+      <a class="nav-link" [routerLink]="['/restaurant-dashboard']">
         <mat-icon>home</mat-icon><span>Home</span>
+      </a>
+    </li>
+    <li class="nav-item" (click)="newAdd()" [class]="isActivated('/newAdd')">
+      <a class="nav-link" [routerLink]="['/newAdd']">
+        <mat-icon>add</mat-icon>
+        <span>New Advertisement</span>
       </a>
     </li>
     <li class="nav-item" (click)="logOut()">

@@ -13,6 +13,8 @@ import { RestDashboardComponent } from './rest-dashboard/rest-dashboard.componen
 import { NotAuthService } from "./auth/not-auth.service";
 import { AuthGuardService } from "./auth/auth-guard.service";
 import { AdminNavComponent } from './admin-nav/admin-nav.component';
+import { NewAddComponent } from './new-add/new-add.component';
+import { PostAddComponent } from './post-add/post-add.component';
 
 const routes: Routes = [
   {
@@ -23,7 +25,16 @@ const routes: Routes = [
     path: 'restaurant-dashboard',
     component: RestDashboardComponent,
     canActivate: [AuthGuardService]
+  }, {
+    path: 'newAdd',
+    component: NewAddComponent,
+    canActivate: [AuthGuardService],
+  }, {
+  path: 'postAdd/:option',
+    component: PostAddComponent,
+    canActivate: [AuthGuardService]
   }
+
 ];
 
 @NgModule({
@@ -31,7 +42,9 @@ const routes: Routes = [
     AppComponent,
     LogInComponent,
     RestDashboardComponent,
-    AdminNavComponent
+    AdminNavComponent,
+    NewAddComponent,
+    PostAddComponent
   ],
   imports: [
     MatInputModule,

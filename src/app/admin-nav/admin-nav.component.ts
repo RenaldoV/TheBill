@@ -14,7 +14,6 @@ export class AdminNavComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) { }
-
   ngOnInit() {
   }
   logOut() {
@@ -27,6 +26,9 @@ export class AdminNavComponent implements OnInit {
     } else {
       return 'nav-item';
     }
+  }
+  newAdd() {
+    this.router.navigate(['newAdd']);
   }
 
 }

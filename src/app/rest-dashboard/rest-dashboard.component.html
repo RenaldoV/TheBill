@@ -1,3 +1,20 @@
-<p>
-  rest-dashboard works!
-</p>
+<div class="top-bar">
+  <span class="search-icon">
+    <mat-icon>search</mat-icon>
+  </span>
+  <input type="text" class="search" placeholder="Search">
+</div>
+<div class="container addsContainer">
+  <div class="row">
+    <div class="col-5 offset-1 addBox" (click)="newAdd()">
+      <div class="addlayer">
+        <h2 class="add-box-text text-center">
+        <span>
+          New Advertisement
+        </span>
+          <mat-icon>add_circle_outline</mat-icon>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>

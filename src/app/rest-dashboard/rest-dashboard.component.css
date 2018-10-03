@@ -1,0 +1,62 @@
+.top-bar {
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  position: fixed;
+}
+.search-icon {
+  float: left;
+}
+.search-icon mat-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  color: lightgray;
+  margin-top: 10px;
+}
+input,
+input::-webkit-input-placeholder {
+  font-size: 28px;
+  line-height: 3;
+}
+input {
+  height: 40px;
+  width: 60%;
+  border: none;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+input:focus {
+  border: none;
+  outline: none;
+}
+.addBox {
+  position: relative;
+  background-color: rgb(60,60,60);
+  height: 150px;
+  background-image: url("https://static.vinepair.com/wp-content/uploads/2015/06/craft-beer-bar-social.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 5% 95%;
+  transition: box-shadow 0.3s;
+}
+.addBox:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.addsContainer {
+  margin-top: 70px;
+  padding: 20px 0px 20px 0px;
+}
+.addlayer {
+  background-color: rgba(100, 100, 100, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: rgb(245,245,245);
+}
+.addlayer h2.add-box-text {
+  margin-top: 45px;
+}
