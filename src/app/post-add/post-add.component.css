@@ -1,0 +1,28 @@
+.form-container {
+  margin-top: 70px;
+}
+
+.form-box {
+  width: 100%;
+  background-color: white;
+}
+
+.form-header {
+  width: 100%;
+  background-color: rgb(46,46,46);
+  color: white;
+  padding: 5px;
+}
+.form-content {
+  padding: 15px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.priceInput {
+  width: 150px
+}
+

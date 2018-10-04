@@ -1,3 +1,41 @@
-<p>
-  post-add works!
-</p>
+<div class="row form-container">
+  <div class="col-10 offset-1">
+    <h2>New Add</h2>
+    <div class="form-box">
+      <div class="form-header">
+        <h3>Advertisement Order</h3>
+      </div>
+      <div class="form-content">
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-5">
+              <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title" formControlName="title" required>
+                <mat-error *ngIf="title.hasError('required')">
+                  Title is required.
+                </mat-error>
+                <mat-error *ngIf="title.hasError('minlength')">
+                  Title must be longer than 10 characters.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="priceInput">
+                <mat-label>Price</mat-label>
+                <input type="number" matInput placeholder="Price" formControlName="price" required>
+                <mat-error *ngIf="price.hasError('required')">
+                  Price is required.
+                </mat-error>
+                <mat-error *ngIf="price.hasError('min')">
+                  Price must be more than 0.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-5 offset-1">
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
