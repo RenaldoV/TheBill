@@ -23,6 +23,26 @@ mat-form-field {
 }
 
 .priceInput {
-  width: 150px
+  width: 160px
+}
+
+.imageUploadBox {
+  height: 70%;
+  border-radius: 20px;
+  border: rgb(46,46,46) dashed 1px;
+  padding-top: 37%;
+  cursor: pointer;
+  color: lightgray;
+}
+.submitBtn {
+  float: right;
+  height: 50px;
+  border-radius: 5px;
+}
+h4.total {
+  float: right;
+}
+h4.total span {
+  font-weight: 300;
 }
 

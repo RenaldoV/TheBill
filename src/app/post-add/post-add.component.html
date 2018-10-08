@@ -11,7 +11,7 @@
             <div class="col-5">
               <mat-form-field appearance="outline">
                 <mat-label>Title</mat-label>
-                <input matInput placeholder="Title" formControlName="title" required>
+                <input matInput placeholder="Title (min 10 characters)" formControlName="title" required>
                 <mat-error *ngIf="title.hasError('required')">
                   Title is required.
                 </mat-error>
@@ -29,9 +29,47 @@
                   Price must be more than 0.
                 </mat-error>
               </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Description (min 50 characters)" formControlName="description" required></textarea>
+                <mat-error *ngIf="description.hasError('required')">
+                  Description is required.
+                </mat-error>
+                <mat-error *ngIf="description.hasError('minlength')">
+                  Description must be longer than 100 characters.
+                </mat-error>
+              </mat-form-field>
+              <div formGroupName="order">
+                <mat-form-field appearance="outline" class="priceInput">
+                  <mat-label>Interval</mat-label>
+                  <input matInput placeholder="Interval" formControlName="interval">
+                </mat-form-field>
+                <br/>
+                <mat-form-field appearance="outline" class="priceInput" disabled="true">
+                  <mat-label>Number of {{metric?.value}}</mat-label>
+                  <input type="number" matInput placeholder="Number of {{metric?.value}}" formControlName="duration" (change)="getTotal()">
+                  <mat-error *ngIf="duration.hasError('required')">
+                    Duration is required.
+                  </mat-error>
+                  <mat-error *ngIf="duration.hasError('min')">
+                    Duration must be more than {{ duration.errors.min.min }} {{metric?.value}}.
+                  </mat-error>
+                  <mat-error *ngIf="duration.hasError('max')">
+                    Duration must be less than {{ duration.errors.max.max }} {{metric?.value}}.
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
             <div class="col-5 offset-1">
-
+              <div class="imageUploadBox text-center">
+                <h4>Upload Photo</h4>
+                <p>Max 5MB</p>
+              </div>
+              <br/>
+              <h4 class="total">Total: &nbsp;&nbsp;&nbsp;<span>R{{ total.value > 0 ? total.value : 0}}</span></h4>
+              <br/>
+              <br/>
+              <button mat-raised-button type="submit" class="submitBtn" (click)="submit()" color="primary" [disabled]="!addForm.valid">Submit</button>
             </div>
           </div>
         </form>
@@ -39,3 +77,8 @@
     </div>
   </div>
 </div>
+
+<!--
+TODO: Image Upload
+TODO: Save To DB
+-->

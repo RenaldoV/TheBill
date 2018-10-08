@@ -5,7 +5,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthService } from "./auth.service";
-import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSidenavModule} from "@angular/material";
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSidenavModule } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { WINDOW_PROVIDERS } from "./window.service";
