@@ -11,14 +11,17 @@ mongoose.connect(config.DB).then(
   err => { console.log('Can not connect to the database'+ err)}
 );
 const userRoutes = require('./routes/user.route');
+const fileRoutes = require('./routes/file.route');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '5mb', type: 'application/json'}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 const port = process.env.PORT || 4000;
 app.use(errorHandler);
 
 app.use('/user', userRoutes);
+app.use('/file', fileRoutes);
 
 const server = app.listen(port, function(){
   console.log('Listening on port ' + port);
@@ -26,5 +29,5 @@ const server = app.listen(port, function(){
 
 function errorHandler (err, req, res, next) {
   res.status(500);
-  res.render('error', { error: err });
+  res.status(err.statusCode).json({ error: err });
 }

@@ -5,7 +5,13 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthService } from "./auth.service";
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSidenavModule } from "@angular/material";
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSidenavModule
+} from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { WINDOW_PROVIDERS } from "./window.service";
@@ -15,6 +21,7 @@ import { AuthGuardService } from "./auth/auth-guard.service";
 import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { NewAddComponent } from './new-add/new-add.component';
 import { PostAddComponent } from './post-add/post-add.component';
+import { FileService } from "./post-add/file.service";
 
 const routes: Routes = [
   {
@@ -59,7 +66,9 @@ const routes: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-    WINDOW_PROVIDERS
+    WINDOW_PROVIDERS,
+    FileService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

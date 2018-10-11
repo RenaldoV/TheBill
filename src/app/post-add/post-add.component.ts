@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from '../auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FileService} from "./file.service";
 
 @Component({
   selector: 'app-post-add',
@@ -10,11 +11,26 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class PostAddComponent implements OnInit {
   addForm: FormGroup;
+  @ViewChild('theFile') theFile: any;
+  @Input() imageLink: String;
+  @Input() formControlValue: String;
+  @Output() imageLinkChange = new EventEmitter<any>();
+  @Output() imageUrlChange = new EventEmitter<any>();
+
+  url: string;
+  data: any;
+  showCropper: boolean;
+  step: Number;
+  chooseText: String;
+  isLoading: Boolean = false;
+  failed: Boolean = false;
+  out: string = "";
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private fileService: FileService) {
     this.createForm();
   }
 
@@ -91,8 +107,70 @@ export class PostAddComponent implements OnInit {
     }
     console.log(this.addForm);
   }
+  openFileBrowser() {
+    if (this.url) {
+      if(confirm("Are you sure you want to change the image?")) {
+        this.theFile.nativeElement.click();
+      }
+    }else {
+      this.theFile.nativeElement.click();
+    }
+  }
   submit() {
     console.log();
   }
+  fileChangeListener($event) {
+    // Delete if uploaded
+    if (this.url) {
+        this.fileService.deleteFile(this.url).subscribe(res => {
+          console.log(res);
+        }, err => {
+          console.error(err);
+        });
+    }
+    const image: any = new Image();
+    const file: File = $event.target.files[0];
+    if (file.size > 5242880) {
+      alert('The file must be smaller than 5MB');
+    } else {
+      const myReader: FileReader = new FileReader();
+      const that = this;
+      myReader.onloadend = function (loadEvent: any) {
+        image.src = loadEvent.target.result;
+        that.out += image.src;
+        that.Upload(loadEvent.target.result);
+      };
+      myReader.readAsDataURL(file);
+      this.theFile.nativeElement.value = '';
+    }
+  }
+  Upload(base64: string) {
+    const that = this;
+    this.isLoading = true;
+    this.failed = false;
+    return that.fileService.uploadImage(base64).subscribe(res => {
+      that.isLoading = false;
+      that.url = res;
+      that.imageLink = res;
+      return res;
+    }, err => {
+      that.isLoading = false;
+      that.failed = true;
+      that.theFile.nativeElement.value = '';
+      const ret = {
+        err: 'Upload Failed.'
+      };
+      throw err;
+    });
+  }
 
+  imgLoadStart() {
+    console.log('loadStart');
+  }
+  imgLoadEnd() {
+    console.log('loadEnd');
+  }
 }
+
+// TODO: Image Loader
+// TODO: Image Change / Delete
