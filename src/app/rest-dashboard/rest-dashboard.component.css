@@ -48,6 +48,9 @@ input:focus {
   margin-top: 70px;
   padding: 20px 0px 20px 0px;
 }
+div.addContainer.firstContainer {
+  margin-top: 80px;
+}
 .addlayer {
   background-color: rgba(100, 100, 100, 0.5);
   position: absolute;
@@ -59,4 +62,9 @@ input:focus {
 }
 .addlayer h2.add-box-text {
   margin-top: 45px;
+}
+
+.addContainer {
+  margin: 0px 20px 50px 20px;
+
 }

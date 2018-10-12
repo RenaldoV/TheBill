@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {AuthService} from '../auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FileService} from "./file.service";
+import {AddService} from "./add.service";
 
 @Component({
   selector: 'app-post-add',
@@ -19,9 +20,6 @@ export class PostAddComponent implements OnInit {
 
   url: string;
   data: any;
-  showCropper: boolean;
-  step: Number;
-  chooseText: String;
   isLoading: Boolean = false;
   failed: Boolean = false;
   out: string = "";
@@ -30,7 +28,9 @@ export class PostAddComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private fileService: FileService) {
+    private fileService: FileService,
+    private addService: AddService
+  ) {
     this.createForm();
   }
 
@@ -42,7 +42,7 @@ export class PostAddComponent implements OnInit {
       title: ['', [Validators.required, Validators.minLength(10)]],
       price: ['', [Validators.required, Validators.min(1)]],
       description: ['', [Validators.required, Validators.minLength(50)]],
-      image: [''/*, Validators.required*/],
+      image: ['', Validators.required],
       order: this.initOrder()
     });
   }
@@ -94,6 +94,9 @@ export class PostAddComponent implements OnInit {
   get total() {
     return this.order.get('total');
   }
+  get image() {
+    return this.addForm.get('image');
+  }
   getTotal() {
     switch (this.route.snapshot.params.option) {
       case '1':
@@ -105,24 +108,25 @@ export class PostAddComponent implements OnInit {
       case '3':
         this.total.setValue(( this.duration.value - 5) * 70);
     }
-    console.log(this.addForm);
   }
   openFileBrowser() {
     if (this.url) {
-      if(confirm("Are you sure you want to change the image?")) {
+      if (confirm("Are you sure you want to change the image?")) {
         this.theFile.nativeElement.click();
       }
-    }else {
+    } else {
       this.theFile.nativeElement.click();
     }
   }
   submit() {
-    console.log();
+    this.addService.createAdd(this.addForm.value);
   }
   fileChangeListener($event) {
     // Delete if uploaded
     if (this.url) {
-        this.fileService.deleteFile(this.url).subscribe(res => {
+        const pic = this.url.split('/');
+        const picID = pic[pic.length - 1];
+        this.fileService.deleteFile(picID).subscribe(res => {
           console.log(res);
         }, err => {
           console.error(err);
@@ -149,9 +153,9 @@ export class PostAddComponent implements OnInit {
     this.isLoading = true;
     this.failed = false;
     return that.fileService.uploadImage(base64).subscribe(res => {
-      that.isLoading = false;
       that.url = res;
       that.imageLink = res;
+      this.image.setValue(res);
       return res;
     }, err => {
       that.isLoading = false;
@@ -163,14 +167,8 @@ export class PostAddComponent implements OnInit {
       throw err;
     });
   }
-
-  imgLoadStart() {
-    console.log('loadStart');
-  }
   imgLoadEnd() {
-    console.log('loadEnd');
+    this.isLoading = false;
   }
 }
 
-// TODO: Image Loader
-// TODO: Image Change / Delete

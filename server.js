@@ -6,12 +6,13 @@ const express = require('express'),
   config = require('./config/DB');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DB).then(
+mongoose.connect(config.DB, {useNewUrlParser: true}).then(
   () => {console.log('Database is connected') },
   err => { console.log('Can not connect to the database'+ err)}
 );
 const userRoutes = require('./routes/user.route');
 const fileRoutes = require('./routes/file.route');
+const addRoutes = require('./routes/add.route');
 
 const app = express();
 app.use(bodyParser.json({limit: '5mb', type: 'application/json'}));
@@ -22,6 +23,7 @@ app.use(errorHandler);
 
 app.use('/user', userRoutes);
 app.use('/file', fileRoutes);
+app.use('/add', addRoutes);
 
 const server = app.listen(port, function(){
   console.log('Listening on port ' + port);

@@ -47,8 +47,8 @@ export class FileService {
     }));
   }
 
-  deleteFile(url: string){
-    return this.http.delete(url).pipe(map(res => {
+  deleteFile(url: string) {
+    return this.http.delete(this.host + '/file/' + url).pipe(map(res => {
       return res;
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
@@ -81,4 +81,3 @@ class UserFile {
   public contentType: String;
 }
 
-// TODO: test delete

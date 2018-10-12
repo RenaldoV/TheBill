@@ -62,9 +62,12 @@
             </div>
             <div class="col-5 offset-1">
               <div class="imageUploadBox text-center {{url ?  'image' : ''}}" (click)="openFileBrowser()">
-                <div class="text-box" *ngIf="!isLoading && !url">
+                <div class="text-box" *ngIf="!isLoading && !url && !failed">
                   <h4>Upload Photo</h4>
                   <p>Max 5MB</p>
+                </div>
+                <div class="text-box" *ngIf="failed">
+                  <p style="color: red">Upload Failed, please try again</p>
                 </div>
                 <div class="text-box" *ngIf="isLoading">
                   <img src="https://i.stack.imgur.com/h6viz.gif" alt="loader">
@@ -72,7 +75,7 @@
                 <input #theFile name="file" class="inputfile" id="custom-input" type="file" (change)="fileChangeListener($event)" accept="image/*" hidden/>
                 <div *ngIf="url">
                   <mat-icon class="deleteBtn">remove_circle</mat-icon>
-                  <img  [src]="'http://localhost:4000/' + url" alt="image" (loadstart)="imgLoadStart()" (load)="imgLoadEnd()">
+                  <img  [src]="'http://localhost:4000/' + url" alt="image" (load)="imgLoadEnd()">
                 </div>
               </div>
               <br/>
@@ -87,8 +90,3 @@
     </div>
   </div>
 </div>
-
-<!--
-TODO: Image Upload
-TODO: Save To DB
--->

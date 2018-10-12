@@ -22,6 +22,7 @@ import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { NewAddComponent } from './new-add/new-add.component';
 import { PostAddComponent } from './post-add/post-add.component';
 import { FileService } from "./post-add/file.service";
+import {AddService} from "./post-add/add.service";
 
 const routes: Routes = [
   {
@@ -68,7 +69,8 @@ const routes: Routes = [
   providers: [
     WINDOW_PROVIDERS,
     FileService,
-    AuthService
+    AuthService,
+    AddService
   ],
   bootstrap: [AppComponent]
 })
