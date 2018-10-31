@@ -3,6 +3,7 @@
   height: 70px;
   background-color: white;
   position: fixed;
+  z-index: 2;
 }
 .search-icon {
   float: left;
